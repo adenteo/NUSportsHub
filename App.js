@@ -6,20 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useState, useEffect } from "react";
 import * as Font from "expo-font";
-
-function HomeScreen() {
-    return (
-        <View
-            style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-            }}
-        >
-            <Text>Home!</Text>
-        </View>
-    );
-}
+import HomeScreen from "./app/screens/HomeScreen.js";
 
 function ExploreScreen() {
     return (
@@ -64,6 +51,8 @@ export default function App() {
                 // Pre-load fonts, make any API calls you need to do here
                 await Font.loadAsync({
                     "Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
+                    "Montserrat-Medium": require("./assets/fonts/Montserrat-Bold.ttf"),
+                    "Montserrat-SemiBold": require("./assets/fonts/Montserrat-SemiBold.ttf"),
                 });
             } catch (e) {
                 console.warn(e);
