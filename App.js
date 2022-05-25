@@ -1,13 +1,15 @@
 import * as React from "react";
 import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import * as SplashScreen from "expo-splash-screen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useState, useEffect } from "react";
 import * as Font from "expo-font";
 import HomeScreen from "./app/screens/HomeScreen.js";
-
+import LoginScreen from "./app/screens/LoginScreen.js";
+import { FetchCapacityCall } from "./app/components/fetchCapacity.js";
 function ExploreScreen() {
     return (
         <View
@@ -39,10 +41,10 @@ function ProfileScreen() {
 }
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
     const [appIsReady, setAppIsReady] = useState(false);
-
     useEffect(() => {
         async function prepare() {
             try {
@@ -54,6 +56,7 @@ export default function App() {
                     "Montserrat-Medium": require("./assets/fonts/Montserrat-Bold.ttf"),
                     "Montserrat-SemiBold": require("./assets/fonts/Montserrat-SemiBold.ttf"),
                 });
+                await FetchCapacityCall();
             } catch (e) {
                 console.warn(e);
             } finally {
@@ -93,7 +96,7 @@ export default function App() {
                             <MaterialCommunityIcons
                                 name="home"
                                 color={color}
-                                size={30}
+                                size={25}
                             />
                         ),
                     }}
@@ -106,7 +109,7 @@ export default function App() {
                             <MaterialCommunityIcons
                                 name="earth"
                                 color={color}
-                                size={30}
+                                size={25}
                             />
                         ),
                     }}
@@ -119,7 +122,7 @@ export default function App() {
                             <MaterialCommunityIcons
                                 name="book"
                                 color={color}
-                                size={30}
+                                size={25}
                             />
                         ),
                     }}
@@ -132,7 +135,7 @@ export default function App() {
                             <MaterialCommunityIcons
                                 name="account"
                                 color={color}
-                                size={30}
+                                size={25}
                             />
                         ),
                     }}

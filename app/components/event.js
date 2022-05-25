@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Text, StyleSheet, View } from "react-native";
-
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 export default UserEvent = (props) => {
     return (
         <View style={styles.eventContainer}>
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     eventContainer: {
         flexDirection: "row",
         flexWrap: "wrap",
-        margin: 10,
+        margin: 5,
     },
     eventDateWrapper: {
         justifyContent: "center",
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     eventDetailsWrapper: {
-        margin: 10,
+        margin: 5,
     },
     eventDateDay: {
         fontFamily: "Montserrat-Bold",
