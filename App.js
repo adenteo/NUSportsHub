@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -127,6 +126,7 @@ function App() {
                     "Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
                     "Montserrat-Medium": require("./assets/fonts/Montserrat-Bold.ttf"),
                     "Montserrat-SemiBold": require("./assets/fonts/Montserrat-SemiBold.ttf"),
+                    "Montserrat-Light": require("./assets/fonts/Montserrat-Light.ttf"),
                 });
                 await FetchCapacityCall();
             } catch (e) {

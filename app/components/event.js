@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { useState } from "react";
+import { Text, StyleSheet, View, Dimensions } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 export default UserEvent = (props) => {
     return (
@@ -21,11 +21,14 @@ export default UserEvent = (props) => {
     );
 };
 
+const { height } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
     eventContainer: {
         flexDirection: "row",
-        flexWrap: "wrap",
-        margin: 5,
+        padding: 5,
+        alignItems: "center",
+        height: 0.11 * height,
     },
     eventDateWrapper: {
         justifyContent: "center",
