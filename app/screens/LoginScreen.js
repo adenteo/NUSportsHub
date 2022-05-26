@@ -1,33 +1,58 @@
 import React from "react";
-import { KeyboardAvoidingView, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { TextInput, TouchableOpacity } from "react-native";
-import { useState } from "react";
-//test comment
+import { Image, TouchableOpacity, Text, KeyboardAvoidingView, StyleSheet, TextInput, View } from 'react-native';
+import { useState, } from "react"
+import logo from '../../assets/Logo.png'
+import { useNavigation } from "@react-navigation/native";
+
+
 const LoginScreen = () => {
-    const [NUSid, setNUSid] = useState("");
-    const [password, setPassword] = useState("");
+    const [NUSid, setNUSid] = useState('')
+    const [password, setPassword] = useState('')
+
+    const navigation = useNavigation()
 
     return (
-        <KeyboardAvoidingView style={styles.container} behavior="padding">
+        <KeyboardAvoidingView
+            style={styles.container}
+            behavior="padding">
+
+            <View style={styles.image}>
+                <Image
+                    style={{ resizeMode: "contain", height: 200, width: 300 }}
+                    source={logo} />
+            </View>
+
             <View style={styles.inputContainer}>
                 <TextInput
-                    placeholder="NUS ID"
+                    placeholder="NUSID"
                     value={NUSid}
-                    onChangeText={(text) => setNUSid(text)}
+                    onChangeText={text => setNUSid(text)}
                     style={styles.input}
                 />
 
                 <TextInput
                     placeholder="Password"
                     value={password}
-                    onChangeText={(text) => setPassword(text)}
+                    onChangeText={text => setPassword(text)}
                     style={styles.input}
                     secureTextEntry
                 />
             </View>
+
+            <View style={styles.forgotpwContainer}>
+                <TouchableOpacity
+                    onPress={() => { }}
+                    style={styles.password}
+                >
+                    <Text style={styles.forgotpwText}>Forgot Password?</Text>
+                </TouchableOpacity>
+            </View>
+
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={() => { }} style={styles.button}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('HomeScreen')}
+                    style={styles.button}
+                >
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
 
@@ -35,60 +60,76 @@ const LoginScreen = () => {
                     onPress={() => { }}
                     style={[styles.button, styles.buttonOutline]}
                 >
-                    <Text style={styles.buttonOutlineText}>Register</Text>
+                    <Text style={styles.buttonOutlineTextunderline}>Register</Text>
                 </TouchableOpacity>
             </View>
-        </KeyboardAvoidingView>
-    );
-};
 
-export default LoginScreen;
+        </KeyboardAvoidingView>
+    )
+}
+
+export default LoginScreen
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: "#0C3370",
+
+
     },
     inputContainer: {
-        width: "80%",
+        width: '80%'
+
     },
     input: {
-        backgroundColor: "white",
+        backgroundColor: 'white',
         paddingHorizontal: 15,
         paddingVertical: 10,
-        borderRadius: 10,
-        marginTop: 5,
+        borderRadius: 30,
+        marginTop: 5
+
     },
     button: {
-        backgroundColor: "#EEEEEE",
-        width: "100%",
+        backgroundColor: '#EEEEEE',
+        width: '100%',
         padding: 15,
         borderRadius: 10,
-        alignItems: "center",
+        alignItems: 'center'
     },
 
     buttonContainer: {
-        width: "60%",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 40,
+        width: '60%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 40
     },
 
     buttonOutline: {
-        backgroundColor: "white",
+        backgroundColor: 'white',
         marginTop: 5,
-        borderColor: "white",
+        borderColor: 'white',
         borderWidth: 2,
     },
     buttonText: {
-        color: "black",
-        fontWeight: "700",
-        fontSize: 16,
+        color: 'black',
+        fontWeight: '700',
+        fontSize: 16
     },
     buttonOutlineText: {
-        color: "black",
-        fontWeight: "700",
-        fontSize: 16,
+        color: 'black',
+        fontWeight: '700',
+        fontSize: 16
     },
-});
+
+    forgotpwContainer: {
+        color: '00FFFFFF',
+    },
+
+    forgotpwText: {
+        color: "white",
+        textDecorationLine: 'underline'
+
+    }
+})
