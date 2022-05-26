@@ -9,6 +9,7 @@ import * as Font from "expo-font";
 import HomeScreen from "./app/screens/HomeScreen.js";
 import LoginScreen from "./app/screens/LoginScreen.js";
 import { FetchCapacityCall } from "./app/components/fetchCapacity.js";
+
 function ExploreScreen() {
     return (
         <View
@@ -39,10 +40,81 @@ function ProfileScreen() {
     );
 }
 
+function Home() {
+    return (
+        <Tab.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+                headerShown: false,
+                tabBarStyle: { backgroundColor: "#0C3370" },
+                tabBarActiveTintColor: "black",
+                tabBarInactiveTintColor: "white",
+                tabBarLabelStyle: {
+                    fontFamily: "Montserrat-Bold",
+                    fontSize: 13,
+                },
+            }}
+        >
+            <Tab.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{
+                    tabBarIcon: ({ focused, color, size }) => (
+                        <MaterialCommunityIcons
+                            name="home"
+                            color={color}
+                            size={25}
+                        />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Explore"
+                component={ExploreScreen}
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons
+                            name="earth"
+                            color={color}
+                            size={25}
+                        />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Bookings"
+                component={BookingsScreen}
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons
+                            name="book"
+                            color={color}
+                            size={25}
+                        />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Profile"
+                component={ProfileScreen}
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons
+                            name="account"
+                            color={color}
+                            size={25}
+                        />
+                    ),
+                }}
+            />
+        </Tab.Navigator>
+    );
+}
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-export default function App() {
+function App() {
     const [appIsReady, setAppIsReady] = useState(false);
     useEffect(() => {
         async function prepare() {
@@ -75,72 +147,12 @@ export default function App() {
 
     return (
         <NavigationContainer>
-            <Tab.Navigator
-                initialRouteName="Home"
-                screenOptions={{
-                    headerShown: false,
-                    tabBarStyle: { backgroundColor: "#0C3370" },
-                    tabBarActiveTintColor: "black",
-                    tabBarInactiveTintColor: "white",
-                    tabBarLabelStyle: {
-                        fontFamily: "Montserrat-Bold",
-                        fontSize: 13,
-                    },
-                }}
-            >
-                <Tab.Screen
-                    name="Home"
-                    component={HomeScreen}
-                    options={{
-                        tabBarIcon: ({ focused, color, size }) => (
-                            <MaterialCommunityIcons
-                                name="home"
-                                color={color}
-                                size={25}
-                            />
-                        ),
-                    }}
-                />
-                <Tab.Screen
-                    name="Explore"
-                    component={ExploreScreen}
-                    options={{
-                        tabBarIcon: ({ color }) => (
-                            <MaterialCommunityIcons
-                                name="earth"
-                                color={color}
-                                size={25}
-                            />
-                        ),
-                    }}
-                />
-                <Tab.Screen
-                    name="Bookings"
-                    component={BookingsScreen}
-                    options={{
-                        tabBarIcon: ({ color }) => (
-                            <MaterialCommunityIcons
-                                name="book"
-                                color={color}
-                                size={25}
-                            />
-                        ),
-                    }}
-                />
-                <Tab.Screen
-                    name="Profile"
-                    component={ProfileScreen}
-                    options={{
-                        tabBarIcon: ({ color }) => (
-                            <MaterialCommunityIcons
-                                name="account"
-                                color={color}
-                                size={25}
-                            />
-                        ),
-                    }}
-                />
-            </Tab.Navigator>
+            <Stack.Navigator>
+                <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
+                <Stack.Screen options={{ headerShown: false }} name="HomeScreen" component={Home} />
+            </Stack.Navigator>
         </NavigationContainer>
     );
 }
+
+export default App;
