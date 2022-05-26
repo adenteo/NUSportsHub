@@ -3,7 +3,7 @@ import { KeyboardAvoidingView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput, TouchableOpacity } from "react-native";
 import { useState } from "react";
-
+//test comment
 const LoginScreen = () => {
     const [NUSid, setNUSid] = useState("");
     const [password, setPassword] = useState("");
@@ -27,12 +27,12 @@ const LoginScreen = () => {
                 />
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={() => {}} style={styles.button}>
+                <TouchableOpacity onPress={() => { }} style={styles.button}>
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => {}}
+                    onPress={() => { }}
                     style={[styles.button, styles.buttonOutline]}
                 >
                     <Text style={styles.buttonOutlineText}>Register</Text>
