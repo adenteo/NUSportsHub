@@ -1,12 +1,5 @@
-import { useState } from "react";
-import {
-    StyleSheet,
-    Text,
-    View,
-    SafeAreaView,
-    ScrollView,
-    StatusBar,
-} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, ScrollView, StatusBar } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableOpacity } from "react-native";
 import AddItem from "../components/addItem";
@@ -14,23 +7,8 @@ import UserEvent from "../components/event";
 import { FlatList } from "react-native";
 import { gymCapacityList } from "../components/fetchCapacity";
 import FacilityCapacity from "../components/capacity";
-import { FetchCapacityCall } from "../components/fetchCapacity.js";
-import UserFavourites from "../components/favourites";
-const userFavouritesData = [
-    {
-        iconName: "table-tennis",
-        favouriteName: "Table Tennis",
-    },
-    {
-        iconName: "badminton",
-        favouriteName: "Badminton",
-    },
-    {
-        iconName: "volleyball",
-        favouriteName: "Volleyball",
-    },
-];
-const upcomingEventData = [
+
+const upcomingEventDATA = [
     {
         dateDay: "15",
         dateMonth: "May",
@@ -68,11 +46,30 @@ const upcomingEventData = [
     },
 ];
 
+const test2 = [
+    {
+        capacity: "0/75",
+        name: "Kent Ridge - Fitness gym @MPSH3",
+    },
+    {
+        capacity: "0/75",
+        name: "Kent Ridge - Fitness gym @MPSH3",
+    },
+    {
+        capacity: "0/75",
+        name: "Kent Ridge - Fitness gym @MPSH3",
+    },
+    {
+        capacity: "0/75",
+        name: "Kent Ridge - Fitness gym @MPSH3",
+    },
+];
+
 export default function HomeScreen() {
     const test = () => {
         alert("hello");
     };
-    const renderEvent = ({ item }) => (
+    const renderItem = ({ item }) => (
         <UserEvent
             dateDay={item.dateDay}
             dateMonth={item.dateMonth}
@@ -85,12 +82,6 @@ export default function HomeScreen() {
     const renderCapacity = ({ item }) => (
         <FacilityCapacity name={item.name} capacity={item.capacity} />
     );
-    const renderFavourites = ({ item }) => (
-        <UserFavourites
-            iconName={item.iconName}
-            favouriteName={item.favouriteName}
-        />
-    );
 
     const emptyComponent = () => {
         return (
@@ -102,7 +93,7 @@ export default function HomeScreen() {
         );
     };
 
-    const capacityDivider = () => {
+    const ItemDivider = () => {
         return (
             <View
                 style={{
@@ -112,27 +103,6 @@ export default function HomeScreen() {
             />
         );
     };
-
-    const eventDivider = () => {
-        return (
-            <View
-                style={{
-                    height: 1,
-                    backgroundColor: "#607D8B",
-                }}
-            />
-        );
-    };
-
-    const [refreshing, setRefreshing] = useState(false);
-    const onRefresh = async () => {
-        //set isRefreshing to true
-        setRefreshing(true);
-        await FetchCapacityCall();
-        console.log(gymCapacityList);
-        setRefreshing(false);
-    };
-
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.componentHeader}>
@@ -152,9 +122,8 @@ export default function HomeScreen() {
             </View>
             <SafeAreaView style={styles.wrapper}>
                 <FlatList
-                    ItemSeparatorComponent={eventDivider}
-                    data={upcomingEventData}
-                    renderItem={renderEvent}
+                    data={upcomingEventDATA}
+                    renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
                     ListEmptyComponent={emptyComponent}
                 />
@@ -169,30 +138,19 @@ export default function HomeScreen() {
                         color={"black"}
                         size={20}
                     />
-                    <TouchableOpacity onPress={onRefresh}>
-                        <MaterialCommunityIcons
-                            style={{ paddingLeft: 10 }}
-                            name="refresh"
-                            color={"black"}
-                            size={20}
-                        />
-                    </TouchableOpacity>
                 </View>
                 <TouchableOpacity>
                     <AddItem />
                 </TouchableOpacity>
             </View>
             <SafeAreaView style={styles.wrapper}>
-                <View style={styles.flatListFacilityCapacities}>
-                    <FlatList
-                        ItemSeparatorComponent={capacityDivider}
-                        horizontal={true}
-                        data={gymCapacityList}
-                        renderItem={renderCapacity}
-                        showsHorizontalScrollIndicator={false}
-                        refreshing={refreshing}
-                    />
-                </View>
+                <FlatList
+                    ItemSeparatorComponent={ItemDivider}
+                    horizontal={true}
+                    data={gymCapacityList}
+                    renderItem={renderCapacity}
+                    showsHorizontalScrollIndicator={false}
+                />
             </SafeAreaView>
             <View style={styles.componentHeader}>
                 <View style={styles.componentHeaderLabel}>
@@ -206,13 +164,7 @@ export default function HomeScreen() {
                 <AddItem />
             </View>
             <View style={styles.wrapper}>
-                <FlatList
-                    ItemSeparatorComponent={eventDivider}
-                    data={userFavouritesData}
-                    renderItem={renderFavourites}
-                    showsVerticalScrollIndicator={false}
-                    ListEmptyComponent={emptyComponent}
-                />
+                <Text>Favourites</Text>
             </View>
         </SafeAreaView>
     );

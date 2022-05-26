@@ -1,4 +1,5 @@
-import { Text, StyleSheet, View, Dimensions } from "react-native";
+import React, { useState } from "react";
+import { Text, StyleSheet, View } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 export default FacilityCapacity = (props) => {
     return (
@@ -13,14 +14,13 @@ export default FacilityCapacity = (props) => {
         </View>
     );
 };
-const { width } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
     nameText: {
         fontFamily: "Montserrat-Bold",
         color: "white",
         padding: 5,
         fontSize: 13,
-        textAlign: "center",
     },
     capacityText: {
         fontFamily: "Montserrat-Bold",
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     container: {
         alignItems: "center",
         justifyContent: "center",
-        padding: 10,
+        padding: 15,
         height: "100%",
-        width: width * 0.45,
+        width: 176,
     },
 });
